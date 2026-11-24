@@ -1,0 +1,42 @@
+# Fase 5 - Evaluacion Final POA
+# Problema 3: Control de inventario
+# Curso: Fundamentos de Programacion - UNAD
+
+# Matriz de inventario:
+# Cada fila contiene [codigo, nombre, stock_actual, stock_minimo]
+inventario = [
+    ["A001", "Arroz", 12, 20],
+    ["A002", "Aceite", 25, 15],
+    ["A003", "Azucar", 8, 18],
+    ["A004", "Cafe", 10, 10],
+    ["A005", "Leche", 4, 12]
+]
+
+def calcular_cantidad_pedir(stock_actual, stock_minimo):
+    """Calcula cuantas unidades se deben pedir para alcanzar el stock minimo."""
+    if stock_actual < stock_minimo:
+        return stock_minimo - stock_actual
+    return 0
+
+def mostrar_reporte(matriz_inventario):
+    """Recorre el inventario y muestra la cantidad que se debe solicitar."""
+    print("=" * 58)
+    print("             REPORTE DE CONTROL DE INVENTARIO")
+    print("=" * 58)
+    print(f'{"Codigo":<10}{"Articulo":<18}{"Stock":<10}{"Minimo":<10}{"Pedir":<10}')
+    print("-" * 58)
+
+    for articulo in matriz_inventario:
+        codigo = articulo[0]
+        nombre = articulo[1]
+        stock_actual = articulo[2]
+        stock_minimo = articulo[3]
+
+        cantidad_pedir = calcular_cantidad_pedir(stock_actual, stock_minimo)
+        print(f"{codigo:<10}{nombre:<18}{stock_actual:<10}{stock_minimo:<10}{cantidad_pedir:<10}")
+
+    print("-" * 58)
+    print("Nota: si la columna Pedir muestra cero no se requiere reabastecimiento.")
+
+if __name__ == "__main__":
+    mostrar_reporte(inventario)
